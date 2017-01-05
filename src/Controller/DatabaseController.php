@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
-use App\ModelBuilder\Departement
-use App\ModelBuilder\Pays
+use App\ModelBuilder\Departement;
+use App\ModelBuilder\Pays;
 /**
  *
  */
@@ -9,7 +9,6 @@ class DatabaseController extends Controller
 {
   public function index()
   {
-
     $departementsInsert = array();
     $departementsInsert[] = array('code'=>'01','nom'=>'Ain');
     $departementsInsert[] = array('code'=>'02','nom'=>'Aisne');
@@ -117,9 +116,10 @@ class DatabaseController extends Controller
     $pays = array('code'=>'FR','nom' => 'France');
     $departementsCollection = new Departement();
     $paysCollection = new Pays();
+    $insertDepartements = $departementsCollection->insertDepartements($departementsInsert);
     $departement = $departementsCollection->getDepartement('Essonne');
     $departements = $departementsCollection->getDepartements();
-    $insertDepartements = $departementsCollection->insertDepartements($departementsInsert);
+    echo "<pre>";
     print_r($departements);
   }
 

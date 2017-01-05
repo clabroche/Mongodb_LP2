@@ -17,11 +17,8 @@ $config = [
 $app = new \Slim\App($config);
 $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 
-
-
 $app->get('/','App\Controller\HomeController:index')->setName('home');
 $app->get('/database','App\Controller\DatabaseController:index')->setName('database');
-
 
 
 /*
@@ -41,15 +38,12 @@ pays(id, nom)
 
 Base de données non relationelle :
 
-evenement :
+evenement : MODEL OK
 
 {
-	"id": nombre,
-	"nom": "texte",
-	"description": "texte",
-}
+	"id": nombre,$m = new MongMongoClient();
 
-commentaire :
+commentaire : MODEL OK
 
 {
 	"id": nombre,
@@ -57,7 +51,7 @@ commentaire :
 	"user": <user>
 }
 
-user :
+user : MODEL OK
 
 {
 	"id": nombre,
@@ -65,7 +59,7 @@ user :
 	"prenom": "texte"
 }
 
-pointInteret :
+pointInteret : MODEL OK
 
 {
 	"id": nombre,
@@ -78,7 +72,7 @@ pointInteret :
 	"categorie": [<categorie>]
 }
 
-groupeInteret :
+groupeInteret : MODEL OK
 
 {
 	"id": nombre,
@@ -86,7 +80,7 @@ groupeInteret :
 	"pointsInterets": [<pointInteret>]
 }
 
-categorie :
+categorie : MODEL OK
 
 {
 	"id": nombre,
@@ -94,7 +88,7 @@ categorie :
 	"description": "texte"
 }
 
-ville :
+ville : MODEL OK
 
 {
 	"id": nombre,
@@ -102,7 +96,7 @@ ville :
 	"groupesInteret": [<groupeInteret>]
 }
 
-departement :
+departement : MODEL OK
 
 {
 	"id": nombre,
@@ -110,7 +104,7 @@ departement :
 	"villes": [<ville>]
 }
 
-pays :
+pays : MODEL OK
 
 {
 	"id": nombre,

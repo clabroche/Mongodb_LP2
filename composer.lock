@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+    "hash": "d02536b639b6ac0ecd6c6ff8c7290447",
     "content-hash": "d574f72635f23bf5558da3e78edd3972",
     "packages": [
         {
@@ -31,7 +32,7 @@
                 "MIT"
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
-            "time": "2014-12-30T15:22:37+00:00"
+            "time": "2014-12-30 15:22:37"
         },
         {
             "name": "mongodb/mongodb",
@@ -94,7 +95,7 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2016-12-06T14:54:33+00:00"
+            "time": "2016-12-06 14:54:33"
         },
         {
             "name": "monolog/monolog",
@@ -172,7 +173,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-11-26T00:15:39+00:00"
+            "time": "2016-11-26 00:15:39"
         },
         {
             "name": "nikic/fast-route",
@@ -215,7 +216,7 @@
                 "router",
                 "routing"
             ],
-            "time": "2016-10-20T17:36:47+00:00"
+            "time": "2016-10-20 17:36:47"
         },
         {
             "name": "pimple/pimple",
@@ -261,7 +262,7 @@
                 "container",
                 "dependency injection"
             ],
-            "time": "2015-09-11T15:10:35+00:00"
+            "time": "2015-09-11 15:10:35"
         },
         {
             "name": "psr/http-message",
@@ -311,7 +312,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06T14:39:51+00:00"
+            "time": "2016-08-06 14:39:51"
         },
         {
             "name": "psr/log",
@@ -358,7 +359,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "slim/slim",
@@ -428,7 +429,7 @@
                 "micro",
                 "router"
             ],
-            "time": "2016-12-20T20:30:47+00:00"
+            "time": "2016-12-20 20:30:47"
         }
     ],
     "packages-dev": [],
