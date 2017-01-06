@@ -1,29 +1,29 @@
 <?php
 namespace App\ModelBuilder;
-class Departement extends Model
+class Pays extends Model
 {
-  private $departements;
+  private $pays;
   function __construct()
   {
-    $departements = $this->getDepartements();
+    $pays = $this->getPays();
   }
 
-  public function insertDepartements($tab)
+  public function insertPays($tab)
   {
-    $departements = $this->insert('departements',$tab);
-    return $this->getDepartements();
+    $pays = $this->insert('pays',$tab);
+    return $this->getPays();
   }
 
-  public function getDepartements()
+  public function getPays()
   {
-    $departements = $this->all('departements');
-    return $departements;
+    $pays = $this->all('pays');
+    return $pays;
   }
 
-  public function getDepartement($departement)
+  public function getOnePays($pnom)
   {
-    $departement = $this->findOne('departements', array('nom' => $departement));
-    return $departement;
+    $pays = $this->findOne('pays', array('nom' => $pnom));
+    return $pays;
   }
 
 }
