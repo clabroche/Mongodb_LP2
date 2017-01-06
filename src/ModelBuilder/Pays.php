@@ -20,6 +20,13 @@ class Pays extends Model
     return $pays;
   }
 
+  public function getOnePaysById($id)
+  {
+    $pays_id = new \MongoDB\BSON\ObjectID($id);
+    $pays = $this->findOne('pays', array('_id' => $pays_id));
+    return $pays;
+  }
+
   public function getOnePays($pnom)
   {
     $pays = $this->findOne('pays', array('nom' => $pnom));
