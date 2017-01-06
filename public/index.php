@@ -18,6 +18,9 @@ $app = new \Slim\App($config);
 $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 
 $app->get('/','App\Controller\HomeController:index')->setName('home');
+$app->post('/','App\Controller\HomeController:index')->setName('home.post');
+$app->post('/country_add','App\Controller\HomeController:addCountry')->setName('country_add');
+$app->post('/country_list','App\Controller\PaysController:index')->setName('country_list');
 $app->get('/database','App\Controller\DatabaseController:index')->setName('database');
 
 
