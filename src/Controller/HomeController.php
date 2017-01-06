@@ -13,6 +13,9 @@ class HomeController extends Controller
       <form action='country_add' method='POST'>
         <input type='submit' value='Ajouter un pays'>
       </form>
+      <form action='country_list' method='GET'>
+        <input type='submit' value='Afficher les pays'>
+      </form>
     ";
   }
 
