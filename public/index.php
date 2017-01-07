@@ -22,6 +22,8 @@ $app->post('/','App\Controller\HomeController:index')->setName('home.post');
 $app->post('/country_add','App\Controller\HomeController:addCountry')->setName('country_add');
 $app->post('/country_list','App\Controller\PaysController:index')->setName('country_list');
 $app->get('/database','App\Controller\DatabaseController:index')->setName('database');
+$app->post('/api/point','App\Controller\InteretController:addInteret')->setName('addInteret');
+$app->get('/api/point','App\Controller\InteretController:getInteret')->setName('getInteret');
 
 
 /*
