@@ -26,13 +26,24 @@ class Model
       return $value;
     }
   }
-  
+
+  public function addItemToOne($collection, $element, $attribute, $value)
+  {
+    $collection = (new \MongoDB\Client)->app->$collection;
+    $updatedItem = $collection->update(
+      array("_id" => $element->_id),
+      array($attribute => $value)
+    );
+  }
+
   public function insert($collection, $elements)
   {
     $collection = (new \MongoDB\Client)->app->$collection;
+    $insertManyResult = null;
     foreach ($elements as $key => $value) {
       $insertManyResult = $collection->insertOne($value);
     }
+    return "";
   }
 
 }

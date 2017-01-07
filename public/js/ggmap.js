@@ -38,14 +38,22 @@ types: ['address'],
 componentRestrictions: {country: 'fr'}
 };
 var input = document.getElementById('adress_autocomplete');
+var submit = document.getElementById('point_submit');
 autocomplete = new google.maps.places.Autocomplete(input, options);
-autocomplete.addListener('place_changed', function() {
+$("#point_submit").click(function() {
 
     var place = autocomplete.getPlace();
     var location ={lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
+    var values = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
+    var city_name = "";
+    for(let elem of place.address_components) {
+      if (elem.types[0] == "locality") {
+        values.city_name = elem.long_name;
+      }
+    }
 
+    console.log(values);
 
-    console.log(place);
     var marker = new google.maps.Marker({
       position: location,
       map: map,
@@ -55,7 +63,7 @@ autocomplete.addListener('place_changed', function() {
     $.ajax({
       url: '/api/point',
       type: 'POST',
-      data: location
+      data: values
     })
     .done(function(data) {
 
@@ -64,13 +72,14 @@ autocomplete.addListener('place_changed', function() {
     })
     .fail(function(a,b,c) {
 
-      console.log(a);
+      console.log(a.text());
       console.log(b);
       console.log(c);
     })
     .always(function() {
       console.log("complete");
     });
+
 
 
 });

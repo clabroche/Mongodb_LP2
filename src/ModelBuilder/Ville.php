@@ -26,5 +26,10 @@ class Ville extends Model
     return $ville;
   }
 
+  public function addPointInteret($id,$interet) {
+    $ville_id = new \MongoDB\BSON\ObjectID($id);
+    $ville = $this->addItemToOne('villes', array('_id' => $ville_id), "points_interets", $interet);
+  }
+
 }
  ?>

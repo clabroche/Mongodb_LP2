@@ -11,6 +11,7 @@ class PointInteret extends Model
   public function insertPointInteret($tab)
   {
     $pointInterets = $this->insert('pointInterets',$tab);
+    return $pointInterets;
   }
 
   public function getPostInterets()
