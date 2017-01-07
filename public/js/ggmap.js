@@ -10,9 +10,7 @@ $.ajax({
   dataType: 'json'
 })
 .done(function(data) {
-  console.log(data);
   data.forEach(pointInteret => {
-    console.log(pointInteret.y);
     var marker = new google.maps.Marker({
       position: {lat:parseFloat(pointInteret.x),lng:parseFloat(pointInteret.y)},
       map: map,
@@ -21,15 +19,6 @@ $.ajax({
     marker.setMap(map);
   });
 })
-.fail(function(a,b,c) {
-
-  console.log(a);
-  console.log(b);
-  console.log(c);
-})
-.always(function() {
-  console.log("complete");
-});
 
 
 
@@ -44,16 +33,13 @@ $("#point_submit").click(function() {
 
     var place = autocomplete.getPlace();
     var location ={lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
-    var values = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
+    var values = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng(), point_name:$("#point_name").val()};
     var city_name = "";
     for(let elem of place.address_components) {
       if (elem.types[0] == "locality") {
         values.city_name = elem.long_name;
       }
     }
-
-    console.log(values);
-
     var marker = new google.maps.Marker({
       position: location,
       map: map,
@@ -63,23 +49,18 @@ $("#point_submit").click(function() {
     $.ajax({
       url: '/api/point',
       type: 'POST',
-      data: values
+      data: values,
+      dataType: 'json'
     })
     .done(function(data) {
-
       console.log(data);
-
     })
     .fail(function(a,b,c) {
 
-      console.log(a.text());
+      console.log(a);
       console.log(b);
       console.log(c);
     })
-    .always(function() {
-      console.log("complete");
-    });
-
 
 
 });

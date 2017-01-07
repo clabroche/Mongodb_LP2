@@ -27,14 +27,12 @@ class Model
     }
   }
 
-  public function addItemToOne($collection, $element, $attribute, $value)
+  public function addItemToOne($collection, $element)
   {
     $collection = (new \MongoDB\Client)->app->$collection;
-    $updatedItem = $collection->update(
-      array("_id" => $element->_id),
-      array($attribute => $value)
-    );
+    $updatedItem = $collection->update($element);
   }
+
 
   public function insert($collection, $elements)
   {

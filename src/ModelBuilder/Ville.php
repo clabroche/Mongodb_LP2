@@ -19,6 +19,11 @@ class Ville extends Model
     $villes = $this->all('villes');
     return $villes;
   }
+  public function update($tab)
+  {
+    $villes = $this->update('villes',$tab);
+    return $villes;
+  }
 
   public function getVille($vnom)
   {
