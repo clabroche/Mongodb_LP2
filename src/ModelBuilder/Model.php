@@ -18,15 +18,7 @@ class Model
   {
     $nomCollection = $this->collection;
     $collection = (new \MongoDB\Client)->app->$nomCollection;
-    $newCollection = $collection->findOneAndUpdate($recherche,['$set'=> $update]);
-    return  $newCollection;
-  }
-
-  public function updatekey($recherche, $update)
-  {
-    $nomCollection = $this->collection;
-    $collection = (new \MongoDB\Client)->app->$nomCollection;
-    $newCollection = $collection->findOneAndUpdate($recherche,['$set'=> $update]);
+    $newCollection = $collection->findOneAndUpdate($recherche,['$push'=> $update]);
     return  $newCollection;
   }
 
@@ -61,10 +53,7 @@ class Model
           break;
       }
     }
-    if (!$found) {
-     $tab[]=$id;
-    }
-    return $tab;
+    return $found;
   }
 }
 
