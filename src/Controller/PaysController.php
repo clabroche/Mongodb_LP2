@@ -28,10 +28,25 @@ class PaysController extends Controller
     $countries = $paysCollection->getPays();
     if(sizeof($countries) > 0) {
       foreach ($countries as $value) {
-        $page = $page."<li>".$value->nom."</li>";
+        $page = $page."<li><a href=country_list/".$value->_id.">".$value->nom."</a></li>";
+
       }
     }
     $page = $page."</ul>";
+    echo $page;
+  }
+
+  public function detailledDisplay($request,$response,$args) {
+    $paysCollection = new Pays();
+    $country = $paysCollection->getOnePaysById($args['pays_id']);
+    $page = "<h2>".$country['nom']."</h2><br>";
+    $page = $page."<h4>Départements du pays : </h4>";
+    //on boucle pour voir s'il y a des départements
+    $page = $page."
+      <form action='../index.php' method='POST'>
+        <input type='submit' value=\"Retour à l'acceuil\">
+      </form>
+    ";
     echo $page;
   }
 
