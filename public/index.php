@@ -30,6 +30,7 @@ $app->post('/country_list/{pays_id}','App\Controller\PaysController:detailledDis
 $app->get('/database','App\Controller\DatabaseController:index')->setName('database');
 $app->post('/api/point','App\Controller\InteretController:addInteret')->setName('addInteret');
 $app->get('/api/point','App\Controller\InteretController:getInteret')->setName('getInteret');
+$app->get('/api/ville','App\Controller\InteretController:getInteret')->setName('getInteret');
 
 
 /*

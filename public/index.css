@@ -1,0 +1,21 @@
+*{
+  box-sizing: border-box;
+}
+#descriptionContainer{
+  width:100vw;height:40vh;
+  background-color:#eeeeee;
+  display:inline-block;
+  border: solid 5px #252525;
+
+}
+#map{
+  width:100vw;
+  height:40vh;
+  display:inline-block;
+}
+body{
+  margin:0;
+}
+#adress_autocomplete{
+  width: 100%;
+}
