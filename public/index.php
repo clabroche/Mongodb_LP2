@@ -20,12 +20,17 @@ $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 $app->get('/','App\Controller\HomeController:index')->setName('home');
 $app->post('/','App\Controller\HomeController:index')->setName('home.post');
 
-$app->post('/country_add','App\Controller\HomeController:addCountry')->setName('country_add');
+//on gère les routes liées aux pays
+$app->post('/country_add','App\Controller\PaysController:addCountry')->setName('country_add');
+$app->post('/countries','App\Controller\PaysController:index')->setName('country_list_post');
+$app->get('/countries','App\Controller\PaysController:index')->setName('country_list');
+$app->get('/countries/{pays_id}','App\Controller\PaysController:detailledDisplay')->setName('country_display');
+$app->post('/countries/{pays_id}','App\Controller\PaysController:detailledDisplay')->setName('country_display_post');
 
-$app->post('/country_list','App\Controller\PaysController:index')->setName('country_list_post');
-$app->get('/country_list','App\Controller\PaysController:index')->setName('country_list');
-$app->get('/country_list/{pays_id}','App\Controller\PaysController:detailledDisplay')->setName('country_display');
-$app->post('/country_list/{pays_id}','App\Controller\PaysController:detailledDisplay')->setName('country_display_post');
+//on gère les routes liées aux villes
+$app->post('/city_add','App\Controller\VilleController:addCity')->setName('city_add');
+$app->post('/cities','App\Controller\VilleController:index')->setName('city_list');
+$app->get('/cities','App\Controller\VilleController:index')->setName('city_list');
 
 $app->get('/database','App\Controller\DatabaseController:index')->setName('database');
 

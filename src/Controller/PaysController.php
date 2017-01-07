@@ -28,12 +28,21 @@ class PaysController extends Controller
     $countries = $paysCollection->getPays();
     if(sizeof($countries) > 0) {
       foreach ($countries as $value) {
-        $page = $page."<li><a href=country_list/".$value->_id.">".$value->nom."</a></li>";
+        $page = $page."<li><a href=countries/".$value->_id.">".$value->nom."</a></li>";
 
       }
     }
     $page = $page."</ul>";
     echo $page;
+  }
+
+  public function addCountry() {
+    echo "
+      <form action='countries' method='POST'>
+        <input type='text' value='Nom du pays' Name='country_name'>
+        <input type='submit' value='Ajouter'>
+      </form>
+    ";
   }
 
   public function detailledDisplay($request,$response,$args) {
