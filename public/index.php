@@ -34,7 +34,7 @@ $app->get('/cities','App\Controller\VilleController:index')->setName('city_list'
 
 $app->get('/database','App\Controller\DatabaseController:index')->setName('database');
 $app->post('/api/point','App\Controller\InteretController:addInteret')->setName('addInteret');
-$app->get('/api/point','App\Controller\InteretController:getInteret')->setName('getInteret');
+$app->get('/api/point','App\Controller\InteretController:getInterets')->setName('getInteret');
 
 
 /*
