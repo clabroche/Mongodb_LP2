@@ -11,7 +11,6 @@ class PointInteret extends Model
   public function insertPointInteret($tab)
   {
     $pointInterets = $this->insert('pointInterets',$tab);
-    return $this->getPointInterets();
   }
 
   public function getPostInterets()
@@ -24,6 +23,12 @@ class PointInteret extends Model
   {
     $pointInteret = $this->findOne('pointInterets', array('nom' => $pnom));
     return $pointInteret;
+  }
+  public function getPointInterets()
+  {
+    $pointInterets = $this->all('pointInterets');
+
+    return $pointInterets;
   }
 
 }
