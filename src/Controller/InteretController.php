@@ -22,26 +22,16 @@ class InteretController extends Controller
     $pointInteret = $interetCollection->findOne(array('nom' => $_POST["point_name"] ));
 
     if($ville) {
-      $found = false;
-      foreach ($ville->id_pointsInteret as $key => $id) {
-        if ($id == $pointInteret->_id) {
-            $found = true;
-            break;
-        }
-      }
-      if (!$found) {
-       $ville->id_pointsInteret[]=$pointInteret->_id;
-      }
-
-      $villeCollection->update(['nom' => $_POST["city_name"]],['id_pointsInteret'=>$ville->id_pointsInteret]);
+      $newPoint=$villeCollection->updateArrayId($ville->id_pointsInteret,$pointInteret->_id);
+      $villeCollection->updatekey(['nom' => $_POST["city_name"]],['id_pointsInteret'=>$newPoint]);
       //echo json_encode($villeCollection->findOne(array('nom' => $_POST["city_name"])));
-      echo json_encode($ville);
+      echo json_encode($villeCollection->findOne(array('nom' => $_POST["city_name"])));
     }
     else {
       $ville[] = array('nom' => $_POST["city_name"],"id_pointsInteret"=> $pointInteret->_id );
       $ville_ajoutee = $villeCollection->insertOne($ville);
 
-      echo json_encode($ville);
+      echo json_encode($villeCollection->findOne(array('nom' => $_POST["city_name"])));
     }
   }
 

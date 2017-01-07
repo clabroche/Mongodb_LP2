@@ -22,6 +22,14 @@ class Model
     return  $newCollection;
   }
 
+  public function updatekey($recherche, $update)
+  {
+    $nomCollection = $this->collection;
+    $collection = (new \MongoDB\Client)->app->$nomCollection;
+    $newCollection = $collection->findOneAndUpdate($recherche,['$set'=> $update]);
+    return  $newCollection;
+  }
+
 
   public function findOne($element)
   {
@@ -44,6 +52,20 @@ class Model
     return "";
   }
 
+  public function updateArrayId($tab, $id)
+  {
+    $found = false;
+    foreach ($tab as $key => $id) {
+      if ($id == $id) {
+          $found = true;
+          break;
+      }
+    }
+    if (!$found) {
+     $tab[]=$id;
+    }
+    return $tab;
+  }
 }
 
 

@@ -57,7 +57,7 @@ $("#point_submit").click(function() {
     })
     .fail(function(a,b,c) {
 
-      console.log(a);
+      console.log(a.responseText);
       console.log(b);
       console.log(c);
     })
