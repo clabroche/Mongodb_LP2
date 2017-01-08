@@ -16,15 +16,44 @@ $.ajax({url: '/api/point',type: 'GET',dataType: 'json'})
     listenerMarker(marker,pointInteret)
   });
 })
+
+
+
 function listenerMarker(marker,pointInteret) {
   marker.addListener('click',_=>{
     let titre = $("<div>").text('Propriétés du point d\'interet: ')
     let nom = $("<div>").text('Nom: '  + pointInteret.nom)
     let description = $('<div>').text('Description: '  + pointInteret.description)
-    $('#descriptionContainer').html([titre,nom,description])
+    let espaceCommentaire = $('<div>').addClass('espaceCommentaire');
+    let vueCommentaire = commentaire(pointInteret);
+    $('#descriptionContainer').html([titre,nom,description,espaceCommentaire,vueCommentaire])
+    chargerCommentaire(pointInteret);
   })
 }
 
+function chargerCommentaire(pointInteret) {
+  let vueCommentaires = $('<ul>').addClass('commentaires');
+  $.ajax({
+    url: '/api/commentaires',
+    type: 'GET',
+    dataType: 'json',
+    data:{'nom':pointInteret.nom}
+  })
+  .done(function(commentaires) {
+  console.log(commentaires);
+    commentaires.forEach(commentaire => {
+      vueCommentaires.append('<li class="commentaire"> '+ commentaire.commentaire +'</li>')
+    });
+  })
+  .fail(function(error) {
+    console.log(error.responseText);
+  })
+  .always(function() {
+
+  });
+
+  $('.espaceCommentaire').html(vueCommentaires)
+}
 
 
 function insertPointInteret() {
@@ -63,9 +92,37 @@ function searchPointInteret() {
         ville.pointsInteret.forEach(pointInteret => {
           ul.append($('<li>').addClass('listItem').prop('id','pointInteret').text('nom: ' + pointInteret.nom + ' Description:' + pointInteret.description));
         });
+
         $('#descriptionContainer').text('Listes des points d\'interet dans la ville ' + ville.nom);
         $('#descriptionContainer').append(ul);
       });
   });
+}
+
+function commentaire(pointInteret) {
+  let container = $('<div>')
+  let commentaire = $("<input type='text' name='commentaire' id='commentaireinput' placeholder=\"Votre commentaire\">")
+  let submit = $("<button id='point_submit'>Ajouter un commentaire</button>")
+  submit.click(function(event) {
+    $.ajax({
+      url: '/api/commentaire',
+      type: 'POST',
+      dataType: 'json',
+      data: {"nom": pointInteret.nom,"commentaire":commentaire.val()}
+    })
+    .done(function(data) {
+      console.log(data);
+    })
+    .fail(function(error) {
+      console.log(error.responseText);
+    })
+    .always(function() {
+      console.log("complete");
+    });
+    chargerCommentaire(pointInteret)
+  });
+  container.append([commentaire, submit])
+
+  return container;
 
 }

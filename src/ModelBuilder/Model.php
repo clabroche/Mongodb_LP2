@@ -41,7 +41,7 @@ class Model
     foreach ($elements as $key => $value) {
       $insertManyResult = $collection->insertOne($value);
     }
-    return "";
+    return '';
   }
 
   public function updateArrayId($tab, $id)
