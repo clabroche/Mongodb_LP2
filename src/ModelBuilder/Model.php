@@ -2,39 +2,59 @@
 namespace App\ModelBuilder;
 class Model
 {
-  public function getCollection($collection)
+  private $collection;
+  function __construct($c)
   {
-    $collection = (new \MongoDB\Client)->app->$collection;
-    return  $collection->find();
-  }
-  public function all($collection)
-  {
-      $collection = (new \MongoDB\Client)->app->$collection;
-      $departementsCollection = $collection->find();
-      $arrayDepartements = array();
-      foreach ($departementsCollection as $departmentsInfos) {
-        $arrayDepartements[] = $departmentsInfos;
-      }
-      return $arrayDepartements;
+    $this->collection = $c;
   }
 
-  public function findOne($collection, $element)
+  public function all()
   {
-    $collection = (new \MongoDB\Client)->app->$collection;
+    $nomCollection = $this->collection;
+    $collection = (new \MongoDB\Client)->app->$nomCollection;
+    return  $collection->find();
+  }
+  public function update($recherche, $update)
+  {
+    $nomCollection = $this->collection;
+    $collection = (new \MongoDB\Client)->app->$nomCollection;
+    $newCollection = $collection->findOneAndUpdate($recherche,['$push'=> $update]);
+    return  $newCollection;
+  }
+
+
+  public function findOne($element)
+  {
+    $nomCollection = $this->collection;
+    $collection = (new \MongoDB\Client)->app->$nomCollection;
     $departementsCollection = $collection->find($element);
     foreach ($departementsCollection as $key => $value) {
       return $value;
     }
   }
-  
-  public function insert($collection, $elements)
+
+  public function insertOne($elements)
   {
-    $collection = (new \MongoDB\Client)->app->$collection;
+    $nomCollection= $this->collection;
+    $collection = (new \MongoDB\Client)->app->$nomCollection;
+    $insertManyResult = null;
     foreach ($elements as $key => $value) {
       $insertManyResult = $collection->insertOne($value);
     }
+    return "";
   }
 
+  public function updateArrayId($tab, $id)
+  {
+    $found = false;
+    foreach ($tab as $key => $id) {
+      if ($id == $id) {
+          $found = true;
+          break;
+      }
+    }
+    return $found;
+  }
 }
 
 
