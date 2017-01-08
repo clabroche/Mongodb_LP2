@@ -1,55 +1,22 @@
 <?php
 namespace App\Controller;
-use App\ModelBuilder\Ville;
+use App\ModelBuilder\Model;
 /**
  *
  */
 class VilleController extends Controller
 {
-  public function index()
+  public function getInterets()
   {
-    $page = "
-      <form action='index.php' method='POST'>
-        <input type='submit' value=\"Retour à l'acceuil\">
-      </form>
-      <form action='../../' method='POST'>
-        <input type='submit' value=\"Retour au département\">
-      </form>
-    ";
-
-    //on ajoute le pays puis on les affiche tous
-    $villeCollection = new Ville();
-    $page = $page."<h3>Liste des villes du département</h3>";
-    if(isset($_POST["city_name"])) {
-      $ville[] = array('nom' => $_POST["city_name"]);
-      $insertVille = $villeCollection->insertVille($ville);
-      unset($_POST["city_name"]);
+    $villeCollection = new Model('villes');
+    $pointInteretCollection = new Model('pointInterets');
+    $ville = $villeCollection->findOne(array('nom' => $_POST['name']));
+    foreach ($ville->id_pointsInteret as $key => $id) {
+      $ville->pointsInteret[] = $pointInteretCollection->findOne(array('_id'=>$id));
     }
 
-    //j'attend d'avoir l'ajout et affichage de département fonctionnel pour afficher uniquement les ville du département choisi
-
-    /*$page = $page."<ul>";
-
-    $countries = $paysCollection->getPays();
-    if(sizeof($countries) > 0) {
-      foreach ($countries as $value) {
-        $page = $page."<li><a href=country_list/".$value->_id.">".$value->nom."</a></li>";
-
-      }
-    }
-    $page = $page."</ul>";*/
-    echo $page;
+    return json_encode($ville);
   }
-
-  public function addCity() {
-    echo "
-      <form action='cities' method='POST'>
-        <input type='text' value='Nom de la ville' Name='city_name'>
-        <input type='submit' value='Ajouter'>
-      </form>
-    ";
-  }
-
 }
 
 

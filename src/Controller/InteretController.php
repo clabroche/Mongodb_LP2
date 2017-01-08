@@ -14,7 +14,7 @@ class InteretController extends Controller
   public function addInteret() {
     $interetCollection = new Model('pointInterets');
     $villeCollection = new Model('villes');
-    $interet[] = array('x' => $_POST["lat"],'y' => $_POST["lng"], 'nom' => $_POST["point_name"]);
+    $interet[] = array('x' => $_POST["lat"],'y' => $_POST["lng"], 'nom' => $_POST["point_name"], 'description'=> $_POST["point_description"]);
 
     $ville = $villeCollection->findOne(array('nom' => $_POST["city_name"]));
     if(!($interetCollection->findOne(array('nom' => $_POST["point_name"])))) {
