@@ -33,3 +33,20 @@ ul{
  background: linear-gradient(lightgrey, white, lightgrey); /* Standard syntax */
  border: solid 1px #AAAAAA;
 }
+
+.modaleContainer{
+  width: 90vw;
+  height: 90vh;
+  background-color: white;
+  position: absolute;
+  top: 5vw;
+  left: 5vh;
+}
+
+.closeModale{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
