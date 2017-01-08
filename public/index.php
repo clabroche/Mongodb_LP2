@@ -37,6 +37,8 @@ $app->post('/api/point','App\Controller\InteretController:addInteret')->setName(
 $app->get('/api/point','App\Controller\InteretController:getInterets')->setName('getInteret');
 $app->get('/api/interet','App\Controller\InteretController:getInteret')->setName('getInteret');
 $app->post('/api/ville','App\Controller\VilleController:getInterets')->setName('getInterets');
+$app->post('/api/commentaire','App\Controller\CommentaireController:addCommentaire')->setName('addCommentaire');
+$app->get('/api/commentaires','App\Controller\CommentaireController:getCommentaires')->setName('getCommentaires');
 
 $app->get('/api/evenement','App\Controller\EvenementController:getEvenements')->setName('getEvent');
 $app->post('/api/evenement','App\Controller\EvenementController:addEvenement')->setName('addEvent');

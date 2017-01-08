@@ -16,14 +16,18 @@ $.ajax({url: '/api/point',type: 'GET',dataType: 'json'})
     listenerMarker(marker,pointInteret)
   });
 })
+
+
+
 function listenerMarker(marker,pointInteret) {
   marker.addListener('click',_=>{
-    //affiche un point d'interet quand on clique sur un point de la map
-    let titre = $("<div>").text('Propriétés du point d\'interet: ')
-    let nom = $("<div>").text('Nom: '  + pointInteret.nom)
-    let description = $('<div>').text('Description: '  + pointInteret.description)
+    let nom = $("<div>").addClass('nomInteret').text(pointInteret.nom)
+    let description = $('<div>').addClass('descriptionInteret').text('Description: ' + pointInteret.description)
+    let espaceCommentaire = $('<div>').addClass('espaceCommentaire');
     let addevent = $('<button>').prop('id','addEvenement').text('Ajouter un Evenement')
-    $('#descriptionContainer').html([titre,nom,description,addevent])
+    let vueCommentaire = commentaire(pointInteret);
+    $('#descriptionContainer').html([nom,description,espaceCommentaire,vueCommentaire,addevent])
+    chargerCommentaire(pointInteret);
     formEvenement(pointInteret.nom);
   })
 }
@@ -38,6 +42,7 @@ function insertEvenement(pointInteret) {
     console.log(error.responseText);
   })
 }
+
 
 function insertPointInteret() {
   var options = {types:['address'] , componentRestrictions:{country: 'fr'}};
@@ -75,9 +80,9 @@ function searchPointInteret() {
         ville.pointsInteret.forEach(pointInteret => {
           ul.append($('<li>').addClass('listItem').prop('id','pointInteret').text('nom: ' + pointInteret.nom + ' Description:' + pointInteret.description));
         });
+
         $('#descriptionContainer').text('Listes des points d\'interet dans la ville ' + ville.nom);
         $('#descriptionContainer').append(ul);
       });
   });
-
 }
