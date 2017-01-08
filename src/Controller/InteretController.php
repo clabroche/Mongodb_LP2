@@ -30,17 +30,20 @@ class InteretController extends Controller
         $villeCollection->update(['nom' => $_POST["city_name"]],['id_pointsInteret'=>$pointInteret->_id]);
       }
       //echo json_encode($villeCollection->findOne(array('nom' => $_POST["city_name"])));
-      echo json_encode($villeCollection->findOne(array('nom' => $_POST["city_name"])));
+      echo json_encode($pointInteret);
     }
     else {
       $ville[] = array('nom' => $_POST["city_name"],"id_pointsInteret"=> array($pointInteret->_id));
       $ville_ajoutee = $villeCollection->insertOne($ville);
-
-      echo json_encode($villeCollection->findOne(array('nom' => $_POST["city_name"])));
+      echo json_encode($pointInteret);
     }
   }
 
-
+  public function getInteret()
+  {
+    $interetCollection = new Model('pointInterets');
+    return $interetCollection->findOne(array('x' => $_GET["x"],'y' => $_GET["y"]));
+  }
   public function getInterets() {
     $interetCollection = new Model('pointInterets');
     foreach ($interetCollection->all() as $key => $value) {

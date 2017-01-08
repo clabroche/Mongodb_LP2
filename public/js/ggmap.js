@@ -13,19 +13,21 @@ $.ajax({url: '/api/point',type: 'GET',dataType: 'json'})
       title: 'Hello World !'
     });
     marker.setMap(map);
-    marker.addListener('click',_=>{
-      console.log(pointInteret);
-      let titre = $("<div>").text('Propriétés du point d\'interet: ')
-      let nom = $("<div>").text('Nom: '  + pointInteret.nom)
-      let description = $('<div>').text('Description: '  + pointInteret.description)
-      $('#descriptionContainer').html([titre,nom,description])
-    })
+    listenerMarker(marker,pointInteret)
   });
 })
+function listenerMarker(marker,pointInteret) {
+  marker.addListener('click',_=>{
+    let titre = $("<div>").text('Propriétés du point d\'interet: ')
+    let nom = $("<div>").text('Nom: '  + pointInteret.nom)
+    let description = $('<div>').text('Description: '  + pointInteret.description)
+    $('#descriptionContainer').html([titre,nom,description])
+  })
+}
+
+
 
 function insertPointInteret() {
-
-  // insertion
   var options = {types:['address'] , componentRestrictions:{country: 'fr'}};
   var input = document.getElementById('adress_autocomplete');
   var submit = document.getElementById('point_submit');
@@ -40,30 +42,26 @@ function insertPointInteret() {
           values.city_name = elem.long_name;
         }
       }
-      var marker = new google.maps.Marker({position: location,map: map});
-      marker.setMap(map);
-      $.ajax({url: '/api/point',type: 'POST',data: values})
+      $.ajax({url: '/api/point',type: 'POST',data: values,dataType: 'json',})
+      .done(function(data) {
+        var marker = new google.maps.Marker({position: location,map: map});
+        marker.setMap(map);
+        listenerMarker(marker,data)
+      })
   });
-
-
 }
 
 function searchPointInteret() {
-  //recherche
-
   var options = {types:['(cities)'] , componentRestrictions:{country:'fr'}};
   var input = document.getElementById('ville_autocomplete');
   let searchInteretAutocomplete = new google.maps.places.Autocomplete(input, options);
-  searchInteretAutocomplete.addListener('place_changed', _=> {
+  $("#search_submit").click(function(event) {
       var place = searchInteretAutocomplete.getPlace();
-      console.log(place.name);
       $.ajax({url: '/api/ville',type: 'POST',dataType: 'json',data: {'name': place.name}})
       .done(function(ville) {
-        console.log(ville);
         let ul = $('<ul>').addClass('list').prop('id','listePointInteret');
         ville.pointsInteret.forEach(pointInteret => {
           ul.append($('<li>').addClass('listItem').prop('id','pointInteret').text('nom: ' + pointInteret.nom + ' Description:' + pointInteret.description));
-          console.log(pointInteret.nom);
         });
         $('#descriptionContainer').text('Listes des points d\'interet dans la ville ' + ville.nom);
         $('#descriptionContainer').append(ul);
