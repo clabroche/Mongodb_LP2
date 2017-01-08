@@ -33,6 +33,16 @@ class Model
     }
   }
 
+  public function findbyId($id) {
+    $nomCollection = $this->collection;
+    $collection = (new \MongoDB\Client)->app->$nomCollection;
+    $pays_id = new \MongoDB\BSON\ObjectID($id);
+    $genericCollection = $collection->find(array('_id' => $pays_id));
+    foreach ($genericCollection as $key => $value) {
+      return $value;
+    }
+  }
+
   public function insertOne($elements)
   {
     $nomCollection= $this->collection;

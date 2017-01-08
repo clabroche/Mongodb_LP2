@@ -34,7 +34,25 @@ class EvenementController extends Controller
 
   public function getEvenements()
   {
+    $event_tab;
+    $evenementCollection = new Model('evenements');
+    $ids = $_POST['point'];
+    foreach ($ids as $value) {
+    //  echo json_encode($value['$oid']);
+    $pd = $value;
+      $event = $evenementCollection->findbyId($value['$oid']);
+      $event_tab[] = array('nom' => $event->nom, 'id' => $event->_id);
+    }
 
+    echo json_encode($event_tab);
+  }
+
+  public function getEvenement()
+  {
+    $evenementCollection = new Model('evenements');
+    $id_event = $_POST['event_id'];
+    $event = $evenementCollection->findbyId($id_event);
+    echo json_encode($event);
   }
 
 
