@@ -10,11 +10,19 @@ class HomeController extends Controller
   {
 
     echo "
+
     <link rel='stylesheet' href='/index.css'>
     <div class='mainContainer'>
-      <div id='map'></div>
-      <button class='addPointInteret'>Ajouter un point d'interet</button>
-      <button class='searchPointInteret'>Rechercher un point d'interet par ville</button>
+      <div class='header'>Gestion des points d'interets</div>
+      <div class='mapContainer'>
+        <div id='map'></div>
+        <div class='buttonContainer'>
+          <button class='button addPointInteret'>Ajouter un point d'interet</button>
+          <button class='button searchPointInteret'>Rechercher un point d'interet par ville</button></div>
+        </div>
+      </div>
+
+
       <div id='descriptionContainer'>
         Selectionnez un marqueur sur la map ou recherchez une ville ci-dessous
       </div>

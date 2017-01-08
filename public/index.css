@@ -2,16 +2,10 @@
   box-sizing: border-box;
 }
 #descriptionContainer{
-  width:100vw;height:40vh;
-  background-color:#eeeeee;
+  width:100%;
   display:inline-block;
-  border: solid 5px #252525;
-
-}
-#map{
-  width:100vw;
-  height:40vh;
-  display:inline-block;
+  border: solid 3px #24a851;
+  padding: 10px;
 }
 body{
   margin:0;
@@ -21,6 +15,9 @@ body{
 }
 ul{
   padding: 0;
+}
+li{
+  list-style: none;
 }
 .listItem{
   list-style: none;
@@ -35,18 +32,90 @@ ul{
 }
 
 .modaleContainer{
-  width: 90vw;
+  padding: 40px;
+  width: 90%;
   height: 90vh;
   background-color: white;
   position: absolute;
-  top: 5vw;
+  top: 5%;
   left: 5vh;
 }
 
 .closeModale{
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.nomInteret{
+  text-align: center;
+  width: 100%;
+  font-size: 2em;
+  font-weight: bold;
+}
+.descriptionInteret{
+  width: 100%;
+}
+
+.header{
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+  color: white;
+  background-color: rgb(36, 168, 81);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.buttonContainer{
+  position: relative;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 10px;
+}
+.mapContainer{
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+#map{
+
+    width:100%;
+  height:60vh;
+}
+.buttonContainer button{
+color: white;
+background-color: #24a851;
+border: none;
+padding: 10px;
+font-size: 1.2em;
+font-weight: bold;
+
+}
+
+button{
+color: white;
+background-color: #24a851;
+border: none;
+padding: 10px;
+font-weight: bold;
+
+}
+
+input{
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: white;
+  border: none;
+  border-bottom: 2px solid #24a851;
+  margin-top: 10px;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #252525;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #252525;
 }

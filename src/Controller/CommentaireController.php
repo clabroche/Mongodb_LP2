@@ -11,13 +11,10 @@ class CommentaireController extends Controller
     $interetCollection=new Model('pointInterets');
     $commentaireCollection = new Model('commentaires');
     $interet = $interetCollection->findOne(['nom'=>$_POST['nom']]);
+    $insertCommentaire[] = array('commentaire' => $_POST['commentaire']);
+    $commentaire= $commentaireCollection->insertOne($insertCommentaire);
     $commentaire = $commentaireCollection->findOne(['commentaire'=>$_POST['commentaire']]);
-    if (!$commentaire) {
-      $insertCommentaire[] = array('commentaire' => $_POST['commentaire']);
-      $commentaire= $commentaireCollection->insertOne($insertCommentaire);
-      $commentaire = $commentaireCollection->findOne(['commentaire'=>$_POST['commentaire']]);
-      $interetCollection->update(['nom' => $_POST["nom"]],['id_commentaire'=>$commentaire->_id]);
-    }
+    $interetCollection->update(['nom' => $_POST["nom"]],['id_commentaire'=>$commentaire->_id]);
     return json_encode($commentaire);
   }
 

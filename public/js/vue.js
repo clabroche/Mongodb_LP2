@@ -19,9 +19,10 @@ function closeModale(element) {
 
 
 $('button.addPointInteret').click(function(event) {
-  let formulaire = $("<input type='text' name='address' id='adress_autocomplete' />" +
-    "<input type='text' name='point_name' id='point_name' placeholder=\"Nom du point d'interet\">" +
-    "<input type='text' name='point_description' id='point_description' placeholder=\"Description du point d'interet\">" +
+  let formulaire = $(""+
+    "<label>Localité:</label><input type='text' name='address' id='adress_autocomplete' />" +
+    "<label>Nom du point:</label><input type='text' name='point_name' id='point_name' placeholder=\"Nom du point d'interet\">" +
+    "<label>Description:</label><input type='text' name='point_description' id='point_description' placeholder=\"Description du point d'interet\">" +
     "<button id='point_submit'>Ajouter Point d'interet</button>")
     modale(formulaire);
     insertPointInteret()

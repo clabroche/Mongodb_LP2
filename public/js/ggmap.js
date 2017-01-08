@@ -21,12 +21,11 @@ $.ajax({url: '/api/point',type: 'GET',dataType: 'json'})
 
 function listenerMarker(marker,pointInteret) {
   marker.addListener('click',_=>{
-    let titre = $("<div>").text('Propriétés du point d\'interet: ')
-    let nom = $("<div>").text('Nom: '  + pointInteret.nom)
-    let description = $('<div>').text('Description: '  + pointInteret.description)
+    let nom = $("<div>").addClass('nomInteret').text(pointInteret.nom)
+    let description = $('<div>').addClass('descriptionInteret').text('Description: ' + pointInteret.description)
     let espaceCommentaire = $('<div>').addClass('espaceCommentaire');
     let vueCommentaire = commentaire(pointInteret);
-    $('#descriptionContainer').html([titre,nom,description,espaceCommentaire,vueCommentaire])
+    $('#descriptionContainer').html([nom,description,espaceCommentaire,vueCommentaire])
     chargerCommentaire(pointInteret);
   })
 }
