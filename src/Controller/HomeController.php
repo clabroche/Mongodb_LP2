@@ -30,6 +30,7 @@ class HomeController extends Controller
 
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src='/js/vue.js'></script>
+    <script src='/js/commentaires.js'></script>
     <script src='/js/ggmap.js'></script>
     ";
   }
