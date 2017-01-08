@@ -38,6 +38,9 @@ $app->get('/api/point','App\Controller\InteretController:getInterets')->setName(
 $app->get('/api/interet','App\Controller\InteretController:getInteret')->setName('getInteret');
 $app->post('/api/ville','App\Controller\VilleController:getInterets')->setName('getInterets');
 
+$app->get('/api/evenement','App\Controller\EvenementController:getEvenements')->setName('getEvent');
+$app->post('/api/evenement','App\Controller\EvenementController:addEvenement')->setName('addEvent');
+
 
 /*
 Base de données relationelle :

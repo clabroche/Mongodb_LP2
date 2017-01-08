@@ -41,6 +41,7 @@ class Model
     foreach ($elements as $key => $value) {
       $insertManyResult = $collection->insertOne($value);
     }
+    //echo json_encode("une lette tu vois");
     return "";
   }
 

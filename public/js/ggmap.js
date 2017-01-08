@@ -18,14 +18,26 @@ $.ajax({url: '/api/point',type: 'GET',dataType: 'json'})
 })
 function listenerMarker(marker,pointInteret) {
   marker.addListener('click',_=>{
+    //affiche un point d'interet quand on clique sur un point de la map
     let titre = $("<div>").text('Propriétés du point d\'interet: ')
     let nom = $("<div>").text('Nom: '  + pointInteret.nom)
     let description = $('<div>').text('Description: '  + pointInteret.description)
-    $('#descriptionContainer').html([titre,nom,description])
+    let addevent = $('<button>').prop('id','addEvenement').text('Ajouter un Evenement')
+    $('#descriptionContainer').html([titre,nom,description,addevent])
+    formEvenement(pointInteret.nom);
   })
 }
 
-
+function insertEvenement(pointInteret) {
+  var values = {event_name: document.getElementById('event_name').value, event_desc: document.getElementById('event_desc').value, point_name: pointInteret, event_date: document.getElementById('event_date').value};
+  console.log("avant ajax");
+  $.ajax({url: '/api/evenement', type: 'POST',data: values ,dataType: 'json',})
+  .done(function(data) {
+    console.log(data);
+  }).fail(function(error) {
+    console.log(error.responseText);
+  })
+}
 
 function insertPointInteret() {
   var options = {types:['address'] , componentRestrictions:{country: 'fr'}};

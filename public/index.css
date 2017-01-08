@@ -6,8 +6,13 @@
   background-color:#eeeeee;
   display:inline-block;
   border: solid 5px #252525;
-
 }
+
+#event_desc{
+  width:50%;
+}
+
+
 #map{
   width:100vw;
   height:40vh;
