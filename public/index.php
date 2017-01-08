@@ -40,6 +40,10 @@ $app->post('/api/ville','App\Controller\VilleController:getInterets')->setName('
 $app->post('/api/commentaire','App\Controller\CommentaireController:addCommentaire')->setName('addCommentaire');
 $app->get('/api/commentaires','App\Controller\CommentaireController:getCommentaires')->setName('getCommentaires');
 
+$app->post('/api/evenements','App\Controller\EvenementController:getEvenements')->setName('getEvent');
+$app->post('/api/event','App\Controller\EvenementController:getEvenement')->setName('getOneEvent');
+$app->post('/api/evenement','App\Controller\EvenementController:addEvenement')->setName('addEvent');
+
 
 /*
 Base de données relationelle :

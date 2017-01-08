@@ -17,16 +17,60 @@ $.ajax({url: '/api/point',type: 'GET',dataType: 'json'})
   });
 })
 
+function getEvenements(pointInteret) {
+  var text = "";
+  var values = {point: pointInteret.evenements};
+  $.ajax({url: 'api/evenements',type: 'POST', data: values, dataType: 'json'})
+  .done(function(data) {
+    $('#descriptionContainer').append("<h3>Liste d'évenements</h3><br>");
+    data.forEach(evenement => {
+      $('#descriptionContainer').append("<div class=\"event\" id=\""+evenement.id.$oid+"\">"+evenement.nom+"</div>");
+    })
+    $('.event').click(function(event) {
+      getSpecificEvent(event.target.id);
+    });
 
+  }).fail(function(error) {
+    console.log(error.responseText);
+  })
+  return text;
+}
+
+function getSpecificEvent(id) {
+  var values = {event_id: id};
+  $.ajax({url: 'api/event',type:'POST',data: values, dataType: 'json'})
+  .done(function(data) {
+    let br = $("<br>");
+    let titre = $("<h3>").text(data.nom);
+    let description = $("<div>").text("Description : "+data.description);
+    let date = $("<div>").text("Date de l'évenement : "+data.date);
+    $('#descriptionContainer').html([titre,br,description,br,date]);
+  });
+}
 
 function listenerMarker(marker,pointInteret) {
   marker.addListener('click',_=>{
     let nom = $("<div>").addClass('nomInteret').text(pointInteret.nom)
     let description = $('<div>').addClass('descriptionInteret').text('Description: ' + pointInteret.description)
     let espaceCommentaire = $('<div>').addClass('espaceCommentaire');
+    let addevent = $('<button>').prop('id','addEvenement').text('Ajouter un Evenement')
+    let hr = $('<hr>');
     let vueCommentaire = commentaire(pointInteret);
-    $('#descriptionContainer').html([nom,description,espaceCommentaire,vueCommentaire])
+    $('#descriptionContainer').html([nom,description,espaceCommentaire,hr,vueCommentaire,addevent])
     chargerCommentaire(pointInteret);
+    formEvenement(pointInteret.nom);
+    let evenements = getEvenements(pointInteret);
+  })
+}
+
+function insertEvenement(pointInteret) {
+  var values = {event_name: document.getElementById('event_name').value, event_desc: document.getElementById('event_desc').value, point_name: pointInteret, event_date: document.getElementById('event_date').value};
+  console.log("avant ajax");
+  $.ajax({url: '/api/evenement', type: 'POST',data: values ,dataType: 'json',})
+  .done(function(data) {
+    console.log(data);
+  }).fail(function(error) {
+    console.log(error.responseText);
   })
 }
 
