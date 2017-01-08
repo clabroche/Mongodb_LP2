@@ -14,8 +14,11 @@ $.ajax({url: '/api/point',type: 'GET',dataType: 'json'})
     });
     marker.setMap(map);
     marker.addListener('click',_=>{
-      $('#latitude').text(marker.position.lat());
-      $('#longitude').text(marker.position.lng());
+      console.log(pointInteret.description);
+      let titre = $("<div>").text('Propriétés du point d\'interet: ')
+      let nom = $("<div>").text('Nom: '  +pointInteret.nom)
+      let description = $('<div>').text('Description: '  + pointInteret.description)
+      $('#descriptionContainer').html([titre,nom,description])
     })
   });
 })

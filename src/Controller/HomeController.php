@@ -18,9 +18,7 @@ class HomeController extends Controller
     <button id='point_submit'>Ajouter Point d'interet</button>
     <div id='map'></div>
     <div id='descriptionContainer'>
-      <div>Informations:</div><br>
-      <div id='latitude'></div>
-      <div id='longitude'></div>
+      Selectionnez un marqueur sur la map ou recherchez une ville ci-dessous
     </div>
 
 
